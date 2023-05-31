@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'todo-app';
+  tasks = [
+    { name: 'Tarea 1', completed: false }
+  ];
+
+  filteredTasks = this.tasks;
+
+  applyFilter(filter: string) {
+    if (filter === 'todo') {
+      this.filteredTasks = this.tasks;
+    } else if (filter === 'completadas') {
+      this.filteredTasks = this.tasks.filter(task => task.completed);
+    } else if (filter === 'incompletas') {
+      this.filteredTasks = this.tasks.filter(task => !task.completed);
+    }
+  }
 }
